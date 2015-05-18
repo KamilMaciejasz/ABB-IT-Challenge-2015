@@ -1,12 +1,17 @@
 package com.example.sbmsystems;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.sbmsystems.net.SendingThread;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -17,7 +22,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,9 +31,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -37,7 +38,6 @@ import java.util.List;
  */
 
 	public class MainActivity extends Activity implements LoaderCallbacks<Cursor>, OnClickListener  {
-
     protected static final int REQUEST_OK = 1;
     protected static final String[] sampleNames = {"alex", "kamil", "agnieszka"};
     public UserLoginTask mAuthTask;
@@ -59,21 +59,35 @@ import java.util.List;
     // UI references.
     public AutoCompleteTextView mloginView;
     public EditText mPasswordView;
+    public static Socket mySocket;
+    public static SendingThread mySendingThread;
     private View mProgressView;
     private View mLoginFormView;
     private AuthenticationStrategy mAuthenticationStrategy;
+    private String serverAdress;
     
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         findViewById(R.id.speak).setOnClickListener(this);
         findViewById(R.id.photo).setOnClickListener(this);
+        try {
+		    mySocket = new Socket(serverAdress, 1994);
+			mySendingThread = new SendingThread(mySocket);
+			mySendingThread.run();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         // Set up the login form.
         mloginView = (AutoCompleteTextView) findViewById(R.id.Login);
         populateAutoComplete();
-
+        serverAdress = "192.168.123.123";
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -86,7 +100,7 @@ import java.util.List;
                 return false;
             }
         });
-
+            
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override

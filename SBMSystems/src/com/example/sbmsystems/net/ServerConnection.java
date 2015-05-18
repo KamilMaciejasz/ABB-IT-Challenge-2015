@@ -14,7 +14,9 @@ public class ServerConnection implements Runnable {
         serverIsAlive = true;
         threads = Executors.newFixedThreadPool(20);
     }
-
+    private void runSendingThread(Runnable r){
+    	threads.execute(r);
+    }
     public ServerConnection() {
         try {
             ss = new ServerSocket(LISTENING_PORT);

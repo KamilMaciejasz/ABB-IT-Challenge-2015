@@ -1,8 +1,5 @@
 package com.example.sbmsystems;
 
-import com.example.sbmsystems.MainActivity.UserLoginTask;
-
-import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
 

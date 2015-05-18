@@ -20,7 +20,7 @@ public class SendingThread implements Runnable {
     }
     @Override
     public void run() {
-        try{
+       try{
        ObjectOutputStream out = new ObjectOutputStream(mySocket.getOutputStream()); 
        ObjectInputStream in = new ObjectInputStream(mySocket.getInputStream()); 
        //TODO stany wysylania
