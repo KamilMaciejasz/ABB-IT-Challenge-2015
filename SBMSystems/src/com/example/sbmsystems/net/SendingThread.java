@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 /**
  * 
@@ -30,6 +31,7 @@ public class SendingThread implements Runnable {
 
 	@Override
 	public void run() {
+
 		try {
 			PrintWriter in = new PrintWriter(mySocket.getOutputStream(), true);
 			BufferedReader out = new BufferedReader(new InputStreamReader(

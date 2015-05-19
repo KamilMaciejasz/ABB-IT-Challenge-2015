@@ -72,17 +72,7 @@ import android.widget.TextView;
         setContentView(R.layout.activity_login);
         findViewById(R.id.speak).setOnClickListener(this);
         findViewById(R.id.photo).setOnClickListener(this);
-        try {
-		    mySocket = new Socket(serverAdress, 1994);
-			mySendingThread = new SendingThread(mySocket);			
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
+             
         // Set up the login form.
         mloginView = (AutoCompleteTextView) findViewById(R.id.Login);
         populateAutoComplete();
@@ -154,12 +144,7 @@ import android.widget.TextView;
     private void populateAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
     }
-
-    public boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
+ 
     public boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
@@ -272,12 +257,24 @@ import android.widget.TextView;
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-        	
+        	mySendingThread = null;
+        	try {
+    		    mySocket = new Socket(serverAdress, 1994);
+    			mySendingThread = new SendingThread(mySocket);			
+    		} catch (UnknownHostException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+        	if (mySendingThread == null )
+        		return false;
         	mySendingThread.login = mEmail;
         	mySendingThread.password = mPassword;
         	mySendingThread.run();
         	String result = mySendingThread.token;
-        	if(result.equalsIgnoreCase(result)){
+        	if(result.equalsIgnoreCase("FAIL")){
         		return false;
         	}
         	else{
@@ -308,7 +305,7 @@ import android.widget.TextView;
             showProgress(false);
 
             if (success) {
-            	Intent intent = new Intent(MainActivity.this, AlertDialogWarning.class);
+            	Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
                 startActivity(intent);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

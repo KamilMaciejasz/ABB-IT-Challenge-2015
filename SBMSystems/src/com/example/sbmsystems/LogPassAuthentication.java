@@ -41,11 +41,7 @@ public class LogPassAuthentication implements AuthenticationStrategy{
             activity.mloginView.setError(activity.getString(R.string.error_field_required));
             focusView = activity.mloginView;
             cancel = true;
-        } else if (!activity.isEmailValid(login)) {
-            activity.mloginView.setError(activity.getString(R.string.error_invalid_login));
-            focusView = activity.mloginView;
-            cancel = true;
-        }
+        } 
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
