@@ -49,7 +49,7 @@ import android.widget.TextView;
      */
     
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "a@:asdf"
+            "a@:asdfgh"
     };
     
     /**
@@ -299,7 +299,7 @@ import android.widget.TextView;
             showProgress(false);
 
             if (success) {
-            	Intent intent = new Intent(MainActivity.this, NavigationActivity.class);
+            	Intent intent = new Intent(MainActivity.this, AlertDialogWarning.class);
                 startActivity(intent);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
