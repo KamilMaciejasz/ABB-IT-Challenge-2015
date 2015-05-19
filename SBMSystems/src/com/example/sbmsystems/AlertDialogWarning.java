@@ -25,18 +25,20 @@ public class AlertDialogWarning extends Activity {
 	        	   String uri = "tel:" + postedBy.trim() ;
 	        	   Intent intent = new Intent(Intent.ACTION_CALL);
 	        	   intent.setData(Uri.parse(uri));
-	        	   startActivity(intent);   
+	        	   startActivity(intent);
+	        	   finish();
 	           }
 	       });
 	builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	               // User cancelled the dialog
+	        	   finish(); 
 	           }
 	       });
 	
 	AlertDialog dialog = builder.create();
 	dialog.show();
-	finish();
+	
 }
 	
 }
