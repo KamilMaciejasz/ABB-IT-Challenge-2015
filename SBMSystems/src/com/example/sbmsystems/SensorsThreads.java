@@ -17,11 +17,11 @@ import android.view.MenuItem;
 public class SensorsThreads extends AsyncTask<Void, Void, String> {
 
 	public GettingSensorThread mThread;
-	PlaceholderFragment activity;
+	static PlaceholderFragment activity;
 	
-	SensorsThreads(GettingSensorThread t){
-		mThread = t;
-		
+	SensorsThreads(GettingSensorThread t, PlaceholderFragment p){
+		mThread = t;		
+		activity = p;
 	}
 	
 	@Override
@@ -30,7 +30,10 @@ public class SensorsThreads extends AsyncTask<Void, Void, String> {
 			Socket mySocket = new Socket("192.168.123.123", 1994);
 			mThread = new GettingSensorThread(mySocket);
 			mThread.run();
-			String data1 = mThread.data;
+			String gasData = mThread.gasData;
+			String tempData = mThread.tempdata;
+			SyncSensors w = new SyncSensors(activity,tempData,gasData);
+			w.execute();
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block

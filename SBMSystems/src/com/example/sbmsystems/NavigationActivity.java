@@ -1,7 +1,9 @@
 package com.example.sbmsystems;
 
 
+import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import com.example.sbmsystems.net.GettingSensorThread;
 import com.example.sbmsystems.net.SendingThread;
@@ -39,10 +41,8 @@ public class NavigationActivity extends Activity implements
 	 */
 	private CharSequence mTitle;
 
-	public SensorsThreads mSensorThreads;
+	
 	public SyncSensors mSyncSensors;
-	public static Socket mySocket;
-	public static GettingSensorThread mGettingSensorThread;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,19 +54,25 @@ public class NavigationActivity extends Activity implements
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-				(DrawerLayout) findViewById(R.id.drawer_layout));
-		mSensorThreads = new SensorsThreads();
-		mSensorThreads.execute();
+				(DrawerLayout) findViewById(R.id.drawer_layout));	
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager
-				.beginTransaction()
-				.replace(R.id.container,
-						PlaceholderFragment.newInstance(position + 1)).commit();
+		try {
+			fragmentManager
+					.beginTransaction()
+					.replace(R.id.container,
+							PlaceholderFragment.newInstance(position + 1)).commit();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void onSectionAttached(int number) {
@@ -119,6 +125,9 @@ public class NavigationActivity extends Activity implements
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
+		public static Socket mySocket;
+		public static GettingSensorThread mGettingSensorThread;
+		public SensorsThreads mSensorThreads;
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
@@ -127,8 +136,10 @@ public class NavigationActivity extends Activity implements
 
 		/**
 		 * Returns a new instance of this fragment for the given section number.
+		 * @throws IOException 
+		 * @throws UnknownHostException 
 		 */
-		public static PlaceholderFragment newInstance(int sectionNumber) {
+		public static PlaceholderFragment newInstance(int sectionNumber) throws UnknownHostException, IOException {
 			PlaceholderFragment fragment = new PlaceholderFragment();
 			Bundle args = new Bundle();
 			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -136,7 +147,9 @@ public class NavigationActivity extends Activity implements
 			return fragment;
 		}
 
-		public PlaceholderFragment() {
+		public PlaceholderFragment() throws UnknownHostException, IOException {
+		
+			
 		}
 
 		@Override
@@ -156,9 +169,9 @@ public class NavigationActivity extends Activity implements
 
 		@Override
 		public void onStart() {
-			super.onStart();
-			SyncSensors w = new SyncSensors(this);
-			w.execute();
+			mSensorThreads = new SensorsThreads(mGettingSensorThread, this);
+			mSensorThreads.execute();
+			super.onStart();		
 		}
 	}
 }

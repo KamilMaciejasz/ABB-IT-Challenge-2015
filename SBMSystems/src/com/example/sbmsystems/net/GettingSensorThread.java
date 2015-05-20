@@ -7,10 +7,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import android.util.Log;
+
 public class GettingSensorThread implements Runnable {
 	public Socket mySocket;
-	String id, desc, data;
-	String idGas, idTemp;
+	public String tempdata,gasData;
+
 	public GettingSensorThread(Socket s) {
 		this.mySocket = s;
 	}
@@ -31,23 +33,32 @@ public class GettingSensorThread implements Runnable {
 			String id = out.readLine();
 			String desc;
 			String data;
-			
+
 			if (!id.equalsIgnoreCase("begin")) {
 				return;
 			}
 			ArrayList<Sensor> arr = new ArrayList<Sensor>();
 
-			while (id != null && id.equalsIgnoreCase("end")) {
+			while (id != null && !id.equalsIgnoreCase("end")) {
 				id = out.readLine();
+				Log.d("## TEST",id);
 				if (id.equals("end"))
 					return;
 				desc = out.readLine();
+				Log.d("## TEST",desc);
 				data = out.readLine();
-				if (id != null && desc != null && data != null) {
-					arr.add(new Sensor(id, desc, data));
-				} else {
-					return;
+				Log.d("## TEST",data);
+				if (id.equals("1")) {
+					tempdata = data;
 				}
+				else if(id.equals("2")){
+					gasData = data;
+				}
+//				if (id != null && desc != null && data != null) {
+//					arr.add(new Sensor(id, desc, data));
+//				} else {
+//					return;
+//				}
 
 			}
 			// TODO stany wysylania

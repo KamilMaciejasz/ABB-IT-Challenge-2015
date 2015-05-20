@@ -12,11 +12,14 @@ import android.widget.TextView;
 
 public class SyncSensors extends AsyncTask<Void, Void, Void>{
 
-	PlaceholderFragment activity;
+	static PlaceholderFragment activity;
 	TextView t1, t2, t3, t4, t5, t6;
+	String gasData, tempData;
 	
-	SyncSensors(PlaceholderFragment f){
+	SyncSensors(PlaceholderFragment f, String t, String g){
 		activity = f;
+		tempData = t;
+		gasData = g;
 		t1 = (TextView) activity.getActivity().findViewById(R.id.textView1);
 		t2 = (TextView) activity.getActivity().findViewById(R.id.textView2);
 		t3 = (TextView) activity.getActivity().findViewById(R.id.textView3);
@@ -38,8 +41,8 @@ public class SyncSensors extends AsyncTask<Void, Void, Void>{
 					if (activity != null
 							&& activity.getActivity() != null
 							){
-					t2.setText("YES");	
-					t4.setText("1000 c");	
+					t2.setText(gasData);	
+					t4.setText(tempData);	
 					}
 				}
 			}
