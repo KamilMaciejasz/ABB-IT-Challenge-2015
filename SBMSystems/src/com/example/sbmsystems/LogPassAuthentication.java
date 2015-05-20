@@ -51,7 +51,7 @@ public class LogPassAuthentication implements AuthenticationStrategy{
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             activity.showProgress(true);
-            activity.mAuthTask = activity.new UserLoginTask(login, password);
+            activity.mAuthTask = activity.new UserLoginTask(login, password, "text");
             activity.mAuthTask.execute((Void) null);
         }
 		

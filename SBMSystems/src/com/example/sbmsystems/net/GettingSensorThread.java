@@ -3,26 +3,15 @@ package com.example.sbmsystems.net;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketAddress;
+import java.util.ArrayList;
 
-/**
- * 
- * @author Kazoo
- *         <p>
- *         This class is responsible for sending object to server
- */
-public class SendingThread implements Runnable {
+public class GettingSensorThread implements Runnable {
 	public Socket mySocket;
-	public String login;
-	public String password;
-	public String token;
-	public String logginIn;
-	
-	public SendingThread(Socket s) {
+	String id, desc, data;
+	String idGas, idTemp;
+	public GettingSensorThread(Socket s) {
 		this.mySocket = s;
 	}
 
@@ -37,12 +26,30 @@ public class SendingThread implements Runnable {
 			BufferedReader out = new BufferedReader(new InputStreamReader(
 					mySocket.getInputStream()));
 			in.println("android");
-			in.println("authenticator");
-			in.println(logginIn);
-			in.println(login);
-			in.println(password);
-		    token = out.readLine();
-		    
+			in.println("request");
+			in.println("sensors");
+			String id = out.readLine();
+			String desc;
+			String data;
+			
+			if (!id.equalsIgnoreCase("begin")) {
+				return;
+			}
+			ArrayList<Sensor> arr = new ArrayList<Sensor>();
+
+			while (id != null && id.equalsIgnoreCase("end")) {
+				id = out.readLine();
+				if (id.equals("end"))
+					return;
+				desc = out.readLine();
+				data = out.readLine();
+				if (id != null && desc != null && data != null) {
+					arr.add(new Sensor(id, desc, data));
+				} else {
+					return;
+				}
+
+			}
 			// TODO stany wysylania
 		} catch (Exception e) {
 			// TODO

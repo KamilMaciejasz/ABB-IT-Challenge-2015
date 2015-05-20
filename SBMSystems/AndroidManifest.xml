@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera" >
     </uses-feature>
 
@@ -38,6 +39,10 @@
         <activity
             android:name=".AlertDialogWarning"
             android:label="@string/title_activity_alert_dialog_warning" >
+        </activity>
+        <activity
+            android:name=".SensorsThreads"
+            android:label="@string/title_activity_sensors_threads" >
         </activity>
     </application>
 

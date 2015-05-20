@@ -3,7 +3,7 @@
 
     <string name="app_name">SBMSystems</string>
     <string name="title_activity_navigation">NavigationActivity</string>
-    <string name="title_section1">Section 1</string>
+    <string name="title_section1">Temperature and Gas</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -17,5 +17,6 @@
     <string name="dialog_title">WARNING</string>
     <string name="ok">Call</string>
     <string name="cancel">Anuluj</string>
+    <string name="title_activity_sensors_threads">SensorsThreads</string>
 
 </resources>

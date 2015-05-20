@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			if (!thingsYouSaid.isEmpty()) {
 //				Toast.makeText(this, thingsYouSaid.get(0),						
 //							     Toast.LENGTH_SHORT).show();
-				mAuthTask = new UserLoginTask(mloginView.getText().toString(), thingsYouSaid.get(0));
+				mAuthTask = new UserLoginTask(mloginView.getText().toString(), thingsYouSaid.get(0), "voice");
 	            mAuthTask.execute((Void) null);	
 			}
 		}
@@ -247,10 +247,13 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 
 		private final String mEmail;
 		private final String mPassword;
-
-		public UserLoginTask(String email, String password) {
+		public final String howToLogIn;
+		
+		
+		public UserLoginTask(String email, String password, String howTo) {
 			mEmail = email;
 			mPassword = password;
+			howToLogIn = howTo;
 		}
 
 		@Override
@@ -269,8 +272,14 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			}
 			if (mySendingThread == null)
 				return false;
+			if(howToLogIn.equals("text")){
+				mySendingThread.logginIn = "text";
+			}
+			else{
+				mySendingThread.logginIn = "voice";
+			}
 			mySendingThread.login = mEmail;
-			mySendingThread.password = mPassword;
+			mySendingThread.password = mPassword;			
 			mySendingThread.run();
 			String result = mySendingThread.token;
 			if (result.equalsIgnoreCase("FAIL")) {
@@ -299,8 +308,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 				mPasswordView.requestFocus();
 			}
 		}
-		
-		
+				
 		@Override
 		protected void onCancelled() {
 			mAuthTask = null;

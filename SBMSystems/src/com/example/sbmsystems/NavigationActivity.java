@@ -1,7 +1,12 @@
 package com.example.sbmsystems;
 
-import android.app.Activity;
 
+import java.net.Socket;
+
+import com.example.sbmsystems.net.GettingSensorThread;
+import com.example.sbmsystems.net.SendingThread;
+
+import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -34,6 +39,10 @@ public class NavigationActivity extends Activity implements
 	 */
 	private CharSequence mTitle;
 
+	public SensorsThreads mSensorThreads;
+	public SyncSensors mSyncSensors;
+	public static Socket mySocket;
+	public static GettingSensorThread mGettingSensorThread;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,9 +52,11 @@ public class NavigationActivity extends Activity implements
 				.findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
 
-		// Set up the drawer.	
+		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		mSensorThreads = new SensorsThreads();
+		mSensorThreads.execute();
 	}
 
 	@Override
@@ -142,6 +153,12 @@ public class NavigationActivity extends Activity implements
 			((NavigationActivity) activity).onSectionAttached(getArguments()
 					.getInt(ARG_SECTION_NUMBER));
 		}
-	}
 
+		@Override
+		public void onStart() {
+			super.onStart();
+			SyncSensors w = new SyncSensors(this);
+			w.execute();
+		}
+	}
 }
