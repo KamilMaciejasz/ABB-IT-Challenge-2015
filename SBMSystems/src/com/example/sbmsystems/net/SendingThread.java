@@ -21,31 +21,42 @@ public class SendingThread implements Runnable {
 	public String password;
 	public String token;
 	public String logginIn;
-	
-	public SendingThread(Socket s) {
+	public long session;
+	public int task;
+
+	private PrintWriter in;
+	private BufferedReader out;
+
+	public SendingThread(Socket s, int i) throws IOException {
 		this.mySocket = s;
+		in = new PrintWriter(mySocket.getOutputStream(), true);
+		out = new BufferedReader(new InputStreamReader(
+				mySocket.getInputStream()));
+		task = i;
 	}
 
-	public void setState() {
+	public void sessionCheck() throws IOException {
+		in.println("android");
+		in.println("authenticator");
+		in.println(logginIn);
+		in.println(login);
+		in.println(session);
+		token = out.readLine();		
 	}
 
-	@Override
-	public void run() {
-
+	public void logginCommunication() {
 		try {
-			PrintWriter in = new PrintWriter(mySocket.getOutputStream(), true);
-			BufferedReader out = new BufferedReader(new InputStreamReader(
-					mySocket.getInputStream()));
 			in.println("android");
 			in.println("authenticator");
 			in.println(logginIn);
 			in.println(login);
 			in.println(password);
-		    token = out.readLine();
-		    
+			token = out.readLine();
+			session = Long.parseLong(out.readLine());
 			// TODO stany wysylania
-		} catch (Exception e) {
-			// TODO
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			try {
 				mySocket.close();
@@ -54,6 +65,20 @@ public class SendingThread implements Runnable {
 				e.printStackTrace();
 			}
 		}
+
+	}
+
+	@Override
+	public void run() {
+		if (task == 0)
+			logginCommunication();
+		if (task == 1)
+			try {
+				sessionCheck();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 }

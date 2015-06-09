@@ -43,6 +43,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 		OnClickListener {
 	protected static final int REQUEST_VOICE = 1;
 	public UserLoginTask mAuthTask;
+	public static SessionChecker mSessionChecker;
 	// private static final int CAMERA_REQUEST = 1888;
 
 	// UI references.
@@ -62,8 +63,9 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 		setContentView(R.layout.activity_login);
 		findViewById(R.id.speak).setOnClickListener(this);
 		findViewById(R.id.photo).setOnClickListener(this);
-		prefs = getSharedPreferences("SBMSystems.PreferenceFileKey", Context.MODE_PRIVATE);		
-		
+		prefs = getSharedPreferences("SBMSystems.PreferenceFileKey",
+				Context.MODE_PRIVATE);
+
 		// Set up the login form.
 		mloginView = (AutoCompleteTextView) findViewById(R.id.Login);
 		populateAutoComplete();
@@ -97,6 +99,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 
 		mLoginFormView = findViewById(R.id.login_form);
 		mProgressView = findViewById(R.id.login_progress);
+		mSessionChecker = new SessionChecker();
+		mSessionChecker.execute();
 	}
 
 	// It can recognize spoken Polish if the user is connected to the Internet
@@ -111,12 +115,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			break;
 
 		case R.id.photo:
-			// Intent intent = new Intent(MainActivity.this,
-			// CameraActivity.class);
-			// startActivity(intent);
-			Intent cameraIntent = new Intent(
-					android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-			startActivity(cameraIntent);
+
 			break;
 
 		}
@@ -129,10 +128,9 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			ArrayList<String> thingsYouSaid = data
 					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 			if (!thingsYouSaid.isEmpty()) {
-//				Toast.makeText(this, thingsYouSaid.get(0),						
-//							     Toast.LENGTH_SHORT).show();
-				mAuthTask = new UserLoginTask(mloginView.getText().toString(), thingsYouSaid.get(0), "voice");
-	            mAuthTask.execute((Void) null);	
+				mAuthTask = new UserLoginTask(mloginView.getText().toString(),
+						thingsYouSaid.get(0), "voice");
+				mAuthTask.execute((Void) null);
 			}
 		}
 	}
@@ -247,13 +245,14 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 
 		private final String mEmail;
 		private final String mPassword;
-		public final String howToLogIn;
-		
-		
+		private final String howToLogIn;
+		public Long sessionGhost;
+
 		public UserLoginTask(String email, String password, String howTo) {
 			mEmail = email;
 			mPassword = password;
 			howToLogIn = howTo;
+			sessionGhost = null;
 		}
 
 		@Override
@@ -262,7 +261,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			mySendingThread = null;
 			try {
 				mySocket = new Socket(serverAdress, 1994);
-				mySendingThread = new SendingThread(mySocket);
+				mySendingThread = new SendingThread(mySocket, 0);
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -272,16 +271,16 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			}
 			if (mySendingThread == null)
 				return false;
-			if(howToLogIn.equals("text")){
+			if (howToLogIn.equals("text")) {
 				mySendingThread.logginIn = "text";
-			}
-			else{
+			} else {
 				mySendingThread.logginIn = "voice";
 			}
 			mySendingThread.login = mEmail;
-			mySendingThread.password = mPassword;			
+			mySendingThread.password = mPassword;
 			mySendingThread.run();
 			String result = mySendingThread.token;
+			sessionGhost = mySendingThread.session;
 			if (result.equalsIgnoreCase("FAIL")) {
 				return false;
 			} else {
@@ -293,11 +292,12 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
-			showProgress(false);		
+			showProgress(false);
 			if (success) {
-				
+
 				SharedPreferences.Editor editor = prefs.edit();
-				editor.putString("LOGIN",mEmail);
+				editor.putString("LOGIN", mEmail);
+				editor.putLong("session", sessionGhost);
 				editor.commit();
 				Intent intent = new Intent(MainActivity.this,
 						NavigationActivity.class);
@@ -308,7 +308,51 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 				mPasswordView.requestFocus();
 			}
 		}
-				
+
+		@Override
+		protected void onCancelled() {
+			mAuthTask = null;
+			showProgress(false);
+		}
+	}
+
+	public class SessionChecker extends AsyncTask<Void, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			mySendingThread = null;
+			try {
+				mySocket = new Socket(serverAdress, 1994);
+				mySendingThread = new SendingThread(mySocket, 1);
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (mySendingThread == null)
+				return false;
+			mySendingThread.session = prefs.getLong("session", 1);
+			mySendingThread.login = prefs.getString("LOGIN", "");
+			mySendingThread.logginIn = "VALIDATOR";
+			mySendingThread.run();
+			if (mySendingThread.token.equalsIgnoreCase("SUCCESS"))
+				return true;
+			return false;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean success) {
+			mAuthTask = null;
+			showProgress(false);
+			if (success) {
+				Intent intent = new Intent(MainActivity.this,
+						NavigationActivity.class);
+				startActivity(intent);
+			}
+		}
+
 		@Override
 		protected void onCancelled() {
 			mAuthTask = null;
