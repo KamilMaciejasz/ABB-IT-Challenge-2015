@@ -41,7 +41,7 @@ public class SendingThread implements Runnable {
 		in.println(logginIn);
 		in.println(login);
 		in.println(session);
-		token = out.readLine();		
+		token = out.readLine();
 	}
 
 	public void logginCommunication() {
@@ -52,7 +52,8 @@ public class SendingThread implements Runnable {
 			in.println(login);
 			in.println(password);
 			token = out.readLine();
-			session = Long.parseLong(out.readLine());
+			if (token.equalsIgnoreCase("success"))
+				session = Long.parseLong(out.readLine());
 			// TODO stany wysylania
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -5,8 +5,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.sbmsystems.net.SendingThread;
+import java.util.Map;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -24,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +33,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.sbmsystems.net.SendingThread;
 
 /**
  * A login screen that offers login via login/password.
@@ -44,7 +45,6 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 	protected static final int REQUEST_VOICE = 1;
 	public UserLoginTask mAuthTask;
 	public static SessionChecker mSessionChecker;
-	// private static final int CAMERA_REQUEST = 1888;
 
 	// UI references.
 	public AutoCompleteTextView mloginView;
@@ -280,7 +280,6 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			mySendingThread.password = mPassword;
 			mySendingThread.run();
 			String result = mySendingThread.token;
-			sessionGhost = mySendingThread.session;
 			if (result.equalsIgnoreCase("FAIL")) {
 				return false;
 			} else {
@@ -297,8 +296,15 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 
 				SharedPreferences.Editor editor = prefs.edit();
 				editor.putString("LOGIN", mEmail);
+				sessionGhost = mySendingThread.session;
 				editor.putLong("session", sessionGhost);
 				editor.commit();
+				Map<String, ?> keys = prefs.getAll();
+
+				for (Map.Entry<String, ?> entry : keys.entrySet()) {
+					Log.d("map values", entry.getKey() + ": "
+							+ entry.getValue().toString());
+				}
 				Intent intent = new Intent(MainActivity.this,
 						NavigationActivity.class);
 				startActivity(intent);
@@ -307,6 +313,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 						.setError(getString(R.string.error_incorrect_password));
 				mPasswordView.requestFocus();
 			}
+
 		}
 
 		@Override
