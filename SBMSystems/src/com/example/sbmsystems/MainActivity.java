@@ -41,8 +41,9 @@ import com.example.sbmsystems.net.SendingThread;
  */
 
 public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
-		OnClickListener {
-	protected static final int REQUEST_VOICE = 1;
+		OnClickListener {	
+	public static final int REQUEST_DRAWER = 2;
+	public static final int REQUEST_VOICE = 1;
 	public UserLoginTask mAuthTask;
 	public static SessionChecker mSessionChecker;
 
@@ -115,7 +116,8 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			break;
 
 		case R.id.photo:
-
+			mAuthenticationStrategy = new FaceRecogAuthentication();
+			mAuthenticationStrategy.attemptLogin(this);
 			break;
 
 		}
@@ -132,6 +134,11 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 						thingsYouSaid.get(0), "voice");
 				mAuthTask.execute((Void) null);
 			}
+		}
+		if (requestCode == REQUEST_DRAWER){
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putLong("session", -64);
+			editor.commit();
 		}
 	}
 
@@ -299,15 +306,15 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 				sessionGhost = mySendingThread.session;
 				editor.putLong("session", sessionGhost);
 				editor.commit();
-				Map<String, ?> keys = prefs.getAll();
+//				Map<String, ?> keys = prefs.getAll();
 
-				for (Map.Entry<String, ?> entry : keys.entrySet()) {
-					Log.d("map values", entry.getKey() + ": "
-							+ entry.getValue().toString());
-				}
+//				for (Map.Entry<String, ?> entry : keys.entrySet()) {
+//					Log.d("map values", entry.getKey() + ": "
+//							+ entry.getValue().toString());
+//				}
 				Intent intent = new Intent(MainActivity.this,
 						NavigationActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_DRAWER);
 			} else {
 				mPasswordView
 						.setError(getString(R.string.error_incorrect_password));
@@ -356,7 +363,7 @@ public class MainActivity extends Activity implements LoaderCallbacks<Cursor>,
 			if (success) {
 				Intent intent = new Intent(MainActivity.this,
 						NavigationActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_DRAWER);
 			}
 		}
 

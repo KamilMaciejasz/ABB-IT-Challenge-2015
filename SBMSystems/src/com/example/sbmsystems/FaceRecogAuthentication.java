@@ -2,7 +2,7 @@ package com.example.sbmsystems;
 
 import android.content.Intent;
 
-public class FaceRecogStrategy implements AuthenticationStrategy {
+public class FaceRecogAuthentication implements AuthenticationStrategy {
 
 	@Override
 	public void attemptLogin(MainActivity activity) {

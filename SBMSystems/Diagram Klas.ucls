@@ -12,32 +12,23 @@
   </class>  
   <interface id="2" language="java" name="com.example.sbmsystems.AuthenticationStrategy" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/AuthenticationStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="444" y="3"/>    
+    <position height="-1" width="-1" x="493" y="-99"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="3" language="java" name="com.example.sbmsystems.CameraActivity" project="SBMSystems" 
-    file="/SBMSystems/src/com/example/sbmsystems/CameraActivity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="632" y="83"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="com.example.sbmsystems.LogPassAuthentication" project="SBMSystems" 
+  <class id="3" language="java" name="com.example.sbmsystems.LogPassAuthentication" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/LogPassAuthentication.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="203" y="430"/>    
+    <position height="-1" width="-1" x="505" y="81"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.example.sbmsystems.NavigationActivity" project="SBMSystems" 
+  <class id="4" language="java" name="com.example.sbmsystems.NavigationActivity" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/NavigationActivity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="242" y="-115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,17 +37,17 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="com.example.sbmsystems.NavigationActivity.PlaceholderFragment" 
+  <class id="5" language="java" name="com.example.sbmsystems.NavigationActivity.PlaceholderFragment" 
     project="SBMSystems" file="/SBMSystems/src/com/example/sbmsystems/NavigationActivity.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="464" y="397"/>    
+    <position height="-1" width="-1" x="481" y="431"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="7" language="java" name="com.example.sbmsystems.MainActivity.ProfileQuery" project="SBMSystems" 
+  <interface id="6" language="java" name="com.example.sbmsystems.MainActivity.ProfileQuery" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/MainActivity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-48" y="520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -65,7 +56,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="com.example.sbmsystems.MainActivity.UserLoginTask" project="SBMSystems" 
+  <class id="7" language="java" name="com.example.sbmsystems.MainActivity.UserLoginTask" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/MainActivity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="145" y="611"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -74,16 +65,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="com.example.sbmsystems.MainActivity" project="SBMSystems" 
+  <class id="8" language="java" name="com.example.sbmsystems.MainActivity" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/MainActivity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="262" width="234" x="79" y="40"/>    
+    <position height="262" width="185" x="79" y="40"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="com.example.sbmsystems.NavigationDrawerFragment" project="SBMSystems" 
+  <class id="9" language="java" name="com.example.sbmsystems.NavigationDrawerFragment" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/NavigationDrawerFragment.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="491" width="286" x="-236" y="-174"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -92,7 +83,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="11" language="java" name="com.example.sbmsystems.NavigationDrawerFragment.NavigationDrawerCallbacks" 
+  <interface id="10" language="java" name="com.example.sbmsystems.NavigationDrawerFragment.NavigationDrawerCallbacks" 
     project="SBMSystems" file="/SBMSystems/src/com/example/sbmsystems/NavigationDrawerFragment.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-103" y="402"/>    
@@ -102,16 +93,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="12" language="java" name="com.example.sbmsystems.VoiceAuthentication" project="SBMSystems" 
+  <class id="11" language="java" name="com.example.sbmsystems.VoiceAuthentication" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/VoiceAuthentication.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="429" y="136"/>    
+    <position height="-1" width="-1" x="539" y="203"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="com.example.sbmsystems.net.ClientThread" project="SBMSystems" 
+  <class id="12" language="java" name="com.example.sbmsystems.net.ClientThread" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/net/ClientThread.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="484" y="571"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -120,16 +111,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="com.example.sbmsystems.net.SendingThread" project="SBMSystems" 
+  <class id="13" language="java" name="com.example.sbmsystems.net.SendingThread" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/net/SendingThread.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-24" y="693"/>    
+    <position height="-1" width="-1" x="-83" y="754"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="com.example.sbmsystems.net.ServerConnection" project="SBMSystems" 
+  <class id="14" language="java" name="com.example.sbmsystems.net.ServerConnection" project="SBMSystems" 
     file="/SBMSystems/src/com/example/sbmsystems/net/ServerConnection.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="355" y="736"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -138,104 +129,125 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
+  <class id="15" language="java" name="com.example.sbmsystems.FaceRecogAuthentication" project="SBMSystems" 
+    file="/SBMSystems/src/com/example/sbmsystems/FaceRecogAuthentication.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="360" y="226"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="16">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <association id="17">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="18" name="mAuthTask">        
+        <position height="0" width="0" x="34" y="-146"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="34" y="-146"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="20">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <nesting id="18">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="11"/>  
+  <nesting id="22">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
   </nesting>  
-  <association id="19">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="20" name="mNavigationDrawerFragment">        
+  <dependency id="23">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="25">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="26" name="mySendingThread">        
+        <position height="0" width="0" x="-59" y="61"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-59" y="61"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="28">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="10"/>  
+  </nesting>  
+  <realization id="29">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <nesting id="31">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
+  <realization id="32">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="33">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="34" name="mNavigationDrawerFragment">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1">        
+      <multiplicity id="35" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <association id="37">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="38" name="mCallbacks">        
+        <position height="0" width="0" x="-70" y="-44"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-70" y="-44"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="22">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="23" name="mAuthTask">        
-        <position height="0" width="0" x="34" y="-146"/>      
+  <association id="40">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="41" name="mAuthenticationStrategy">        
+        <position height="0" width="0" x="49" y="-102"/>      
       </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="34" y="-146"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="25">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <nesting id="26">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
-  </nesting>  
-  <association id="27">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="28" name="mCallbacks">        
-        <position height="0" width="0" x="-70" y="-44"/>      
-      </attribute>      
-      <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-70" y="-44"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="30">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <association id="31">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="32" name="mySendingThread"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <nesting id="36">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
-  </nesting>  
-  <association id="37">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="38" name="mAuthenticationStrategy">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="39" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="42" minimum="0" maximum="1">        
+        <position height="0" width="0" x="49" y="-102"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="40">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <nesting id="41">    
-    <end type="SOURCE" refId="5"/>    
+  <nesting id="43">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="6"/>  
   </nesting>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
