@@ -49,13 +49,15 @@
                 android:layout_below="@+id/textView1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="45dp"
-                android:text="Speak" />
+                android:text="Speak" 
+                style = "@style/font_style"/>
 
             <Button
                 android:id="@+id/photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Photo" />
+                android:text="Photo" 
+                style = "@style/font_style"/>
 
         </LinearLayout>
     </ScrollView>

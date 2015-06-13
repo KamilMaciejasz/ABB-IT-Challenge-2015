@@ -40,9 +40,8 @@ public class NavigationActivity extends Activity implements
 	 * {@link #restoreActionBar()}.
 	 */
 	private CharSequence mTitle;
-
-	
 	public SyncSensors mSyncSensors;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,9 +81,6 @@ public class NavigationActivity extends Activity implements
 			break;
 		case 2:
 			mTitle = getString(R.string.title_section2);
-			break;
-		case 3:
-			mTitle = getString(R.string.title_section3);
 			break;
 		}
 	}

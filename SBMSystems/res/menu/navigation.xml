@@ -3,7 +3,7 @@
     tools:context="com.example.sbmsystems.NavigationActivity" >
 
     <item
-        android:id="@+id/action_example"
+        android:id="@+id/refresh"
         android:showAsAction="withText|ifRoom"
         android:title="@string/action_example"/>
     <item

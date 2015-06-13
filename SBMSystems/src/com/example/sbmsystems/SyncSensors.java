@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.example.sbmsystems.NavigationActivity.PlaceholderFragment;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -16,7 +17,7 @@ public class SyncSensors extends AsyncTask<Void, Void, Void>{
 	TextView t1, t2, t3, t4, t5, t6;
 	String gasData, tempData;
 	
-	SyncSensors(PlaceholderFragment f, String t, String g){
+	SyncSensors(PlaceholderFragment f, String t, String g){	
 		activity = f;
 		tempData = t;
 		gasData = g;
