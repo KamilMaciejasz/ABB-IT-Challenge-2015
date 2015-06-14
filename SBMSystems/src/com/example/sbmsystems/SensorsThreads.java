@@ -18,10 +18,11 @@ public class SensorsThreads extends AsyncTask<Void, Void, String> {
 
 	public GettingSensorThread mThread;
 	static PlaceholderFragment activity;
-	
-	SensorsThreads(GettingSensorThread t, PlaceholderFragment p){
+	public Boolean notification;
+	SensorsThreads(GettingSensorThread t, PlaceholderFragment p, Boolean b){
 		mThread = t;		
 		activity = p;
+		notification = b;
 	}
 	
 	@Override
@@ -32,7 +33,7 @@ public class SensorsThreads extends AsyncTask<Void, Void, String> {
 			mThread.run();
 			String gasData = mThread.gasData;
 			String tempData = mThread.tempdata;
-			SyncSensors w = new SyncSensors(activity,tempData,gasData);
+			SyncSensors w = new SyncSensors(activity,tempData,gasData, notification);
 			w.execute();
 			
 		} catch (UnknownHostException e) {

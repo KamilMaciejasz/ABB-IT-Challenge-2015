@@ -6,10 +6,14 @@
         android:id="@+id/refresh"
         android:showAsAction="withText|ifRoom"
         android:title="@string/action_example"/>
-    <item
-        android:id="@+id/action_settings"
+ 
+    <item android:id="@+id/alerts_on"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
+        android:title="Set alerts on"/>
+    
+      <item android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Settings"/>
 </menu>

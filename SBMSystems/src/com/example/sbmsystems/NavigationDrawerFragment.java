@@ -2,6 +2,8 @@ package com.example.sbmsystems;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.example.sbmsystems.NavigationActivity.PlaceholderFragment;
 
@@ -15,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -281,6 +284,12 @@ public class NavigationDrawerFragment extends Fragment {
 			mCallbacks.onSectionAttached(0);
 			Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT)
 					.show();
+			
+			return true;
+		}
+		
+		if(item.getItemId() == R.id.alerts_on) {
+			mCallbacks.setAlerts();
 			return true;
 		}
 
@@ -300,7 +309,7 @@ public class NavigationDrawerFragment extends Fragment {
 	}
 
 	private ActionBar getActionBar() {
-		return getActivity().getActionBar();
+		return getActivity().getActionBar();	
 	}
 
 	/**
@@ -313,5 +322,7 @@ public class NavigationDrawerFragment extends Fragment {
 		 */
 		void onNavigationDrawerItemSelected(int position);
 	    void onSectionAttached(int number);
+	    void setAlerts();
+
 	}
 }

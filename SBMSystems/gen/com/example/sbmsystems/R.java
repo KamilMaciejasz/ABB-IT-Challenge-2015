@@ -31,6 +31,7 @@ public final class R {
     public static final class id {
         public static final int Login=0x7f080003;
         public static final int action_settings=0x7f080014;
+        public static final int alerts_on=0x7f080015;
         public static final int container=0x7f08000b;
         public static final int drawer_layout=0x7f08000a;
         public static final int email_login_form=0x7f080002;
@@ -43,7 +44,7 @@ public final class R {
         public static final int navigation_drawer=0x7f08000d;
         public static final int password=0x7f080004;
         public static final int photo=0x7f080009;
-        public static final int refresh=0x7f080015;
+        public static final int refresh=0x7f080016;
         public static final int speak=0x7f080007;
         public static final int textView1=0x7f080008;
         public static final int textView2=0x7f080010;
@@ -68,9 +69,9 @@ public final class R {
     }
     public static final class string {
         public static final int action_example=0x7f050006;
-        public static final int action_settings=0x7f050007;
         public static final int action_sign_in=0x7f050012;
         public static final int action_sign_in_short=0x7f050013;
+        public static final int alerts_on=0x7f050007;
         public static final int app_name=0x7f050000;
         public static final int cancel=0x7f05000e;
         public static final int dialog_title=0x7f05000c;

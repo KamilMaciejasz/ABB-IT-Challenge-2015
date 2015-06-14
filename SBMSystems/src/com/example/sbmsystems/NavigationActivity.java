@@ -4,7 +4,11 @@ package com.example.sbmsystems;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import com.example.sbmsystems.MainActivity.UserLoginTask;
 import com.example.sbmsystems.net.GettingSensorThread;
 import com.example.sbmsystems.net.SendingThread;
 
@@ -13,9 +17,14 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.speech.RecognizerIntent;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,12 +50,13 @@ public class NavigationActivity extends Activity implements
 	 */
 	private CharSequence mTitle;
 	public SyncSensors mSyncSensors;
+	static public Boolean notification;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_navigation);
-
+		
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
@@ -55,7 +65,15 @@ public class NavigationActivity extends Activity implements
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));	
 	}
-
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(requestCode == 3 && resultCode ==  RESULT_OK){
+		 notification = data.getBooleanExtra("notify", true);
+		}
+	}
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
@@ -74,6 +92,11 @@ public class NavigationActivity extends Activity implements
 		}
 	}
 
+	
+	public void setAlerts(){
+		notification = true;
+	}
+	
 	public void onSectionAttached(int number) {
 		switch (number) {
 		case 1:
@@ -124,6 +147,7 @@ public class NavigationActivity extends Activity implements
 		public static Socket mySocket;
 		public static GettingSensorThread mGettingSensorThread;
 		public SensorsThreads mSensorThreads;
+		public doAsynchronousTask dt;
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
@@ -165,9 +189,19 @@ public class NavigationActivity extends Activity implements
 
 		@Override
 		public void onStart() {
-			mSensorThreads = new SensorsThreads(mGettingSensorThread, this);
-			mSensorThreads.execute();
-			super.onStart();		
+			super.onStart();
+//			mSensorThreads = new SensorsThreads(mGettingSensorThread, this, notification);
+//			mSensorThreads.execute();	
+			Timer timer = new Timer();
+			final Handler c = new Handler();
+
+			dt = new doAsynchronousTask();
+			dt.mgGetting = mGettingSensorThread;
+			dt.mPlaceholder = this;
+			dt.noti = notification;
+			dt.h = new Handler();
+			dt.setTimerTask();
+			timer.schedule(dt.t, 0, 5000);		    					
 		}
 	}
 }

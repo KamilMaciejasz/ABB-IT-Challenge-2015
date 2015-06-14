@@ -54,11 +54,6 @@ public class GettingSensorThread implements Runnable {
 				else if(id.equals("2")){
 					gasData = data;
 				}
-//				if (id != null && desc != null && data != null) {
-//					arr.add(new Sensor(id, desc, data));
-//				} else {
-//					return;
-//				}
 
 			}
 			// TODO stany wysylania
