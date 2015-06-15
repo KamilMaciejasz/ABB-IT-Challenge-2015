@@ -24,56 +24,54 @@ public class SyncSensors extends AsyncTask<Void, Void, Void> {
 	static int counter;
 	static Boolean notification;
 	static Boolean existance;
-	
+
 	SyncSensors(PlaceholderFragment f, String t, String g, Boolean n) {
 		activity = f;
 		tempData = t;
 		gasData = g;
 		notification = n;
-		try{
-		t1 = (TextView) activity.getActivity().findViewById(R.id.textView1);
-		t2 = (TextView) activity.getActivity().findViewById(R.id.textView2);
-		t3 = (TextView) activity.getActivity().findViewById(R.id.textView3);
-		t4 = (TextView) activity.getActivity().findViewById(R.id.textView4);
-		t5 = (TextView) activity.getActivity().findViewById(R.id.textView5);
-		t6 = (TextView) activity.getActivity().findViewById(R.id.textView6);
-		}
-		catch (NullPointerException e){
+		try {
+			t1 = (TextView) activity.getActivity().findViewById(R.id.textView1);
+			t2 = (TextView) activity.getActivity().findViewById(R.id.textView2);
+			t3 = (TextView) activity.getActivity().findViewById(R.id.textView3);
+			t4 = (TextView) activity.getActivity().findViewById(R.id.textView4);
+			t5 = (TextView) activity.getActivity().findViewById(R.id.textView5);
+			t6 = (TextView) activity.getActivity().findViewById(R.id.textView6);
+		} catch (NullPointerException e) {
 			return;
 		}
 	}
 
 	@Override
 	protected Void doInBackground(Void... params) {
-		try{
-		activity.getActivity().runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				{
-					if (activity != null && activity.getActivity() != null) {
-						t2.setText(gasData);
-						t4.setText(tempData);
+		try {
+			activity.getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					{
+						if (activity != null && activity.getActivity() != null) {
+							t2.setText(gasData);
+							t4.setText(tempData + " degrees C");
+						}
 					}
 				}
-			}
-		});	
-		if(tempData == null || gasData == null)
-			return null;
-		
-			if 
-			((existance == null || existance == false) &&
-					(Integer.parseInt(tempData) > 60)
-					&& (notification == null || notification == true )) 
-					
-			{			
+			});
+
+			if (tempData == null || gasData == null)
+				return null;
+			if (existance != null)
+				Log.w("existance", existance.toString());
+			if ((existance == null || existance == false)
+					&& (Integer.parseInt(tempData) > 60)
+					&& (notification == null || notification == true)) {
 				intent = new Intent(activity.getActivity(),
-						AlertDialogWarning.class);				
+						AlertDialogWarning.class);
 				activity.getActivity().startActivityForResult(intent, 3);
-				SyncSensors.existance = false;
 				
+
 			}
 		} catch (NullPointerException n) {
-			Log.w("myApp", "nullptr");
+			n.printStackTrace();
 			return null;
 		}
 		return null;

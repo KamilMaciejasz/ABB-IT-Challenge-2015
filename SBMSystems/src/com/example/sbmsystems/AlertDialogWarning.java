@@ -12,6 +12,7 @@ import android.view.MenuItem;
 public class AlertDialogWarning extends Activity {
 
 	Boolean result;
+	AlertDialog dialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,15 @@ public class AlertDialogWarning extends Activity {
 	           }
 	       });
 	
-	AlertDialog dialog = builder.create();
+    dialog = builder.create();
 	dialog.show();
 	
 }
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		dialog.dismiss();
+	}
 	
 }

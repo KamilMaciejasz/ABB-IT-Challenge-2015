@@ -71,6 +71,7 @@ public class NavigationActivity extends Activity implements
 
 		if (requestCode == 3 && resultCode == RESULT_OK) {
 			notification = data.getBooleanExtra("notify", true);
+			SyncSensors.existance = false;
 		}
 	}
 
