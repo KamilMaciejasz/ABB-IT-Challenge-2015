@@ -148,7 +148,7 @@ public class NavigationActivity extends Activity implements
 		public static Socket mySocket;
 		public GettingSensorThread mGettingSensorThread;
 		public static doAsynchronousTask dt;
-		public Timer timer;
+		public static Timer timer;
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
@@ -204,6 +204,14 @@ public class NavigationActivity extends Activity implements
 			} catch (NullPointerException n) {
 
 			}
+		}
+		
+		@Override
+		public void onDestroy(){			
+			timer.cancel();
+			timer.purge();
+			super.onDestroy();
+			
 		}
 	}
 }

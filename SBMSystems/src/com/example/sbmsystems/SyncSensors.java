@@ -30,17 +30,22 @@ public class SyncSensors extends AsyncTask<Void, Void, Void> {
 		tempData = t;
 		gasData = g;
 		notification = n;
+		try{
 		t1 = (TextView) activity.getActivity().findViewById(R.id.textView1);
 		t2 = (TextView) activity.getActivity().findViewById(R.id.textView2);
 		t3 = (TextView) activity.getActivity().findViewById(R.id.textView3);
 		t4 = (TextView) activity.getActivity().findViewById(R.id.textView4);
 		t5 = (TextView) activity.getActivity().findViewById(R.id.textView5);
-		t6 = (TextView) activity.getActivity().findViewById(R.id.textView6);		
+		t6 = (TextView) activity.getActivity().findViewById(R.id.textView6);
+		}
+		catch (NullPointerException e){
+			return;
+		}
 	}
 
 	@Override
 	protected Void doInBackground(Void... params) {
-
+		try{
 		activity.getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -55,10 +60,9 @@ public class SyncSensors extends AsyncTask<Void, Void, Void> {
 		if(tempData == null || gasData == null)
 			return null;
 		
-		try {
 			if 
-//			((existance == null || existance == false) &&
-					((Integer.parseInt(tempData) > 60)
+			((existance == null || existance == false) &&
+					(Integer.parseInt(tempData) > 60)
 					&& (notification == null || notification == true )) 
 					
 			{			
