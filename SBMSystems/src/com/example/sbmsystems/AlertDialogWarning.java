@@ -17,6 +17,7 @@ public class AlertDialogWarning extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alert_dialog_warning);
+		SyncSensors.existance = true;
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(R.string.warning)
 	       .setTitle(R.string.dialog_title);

@@ -1,6 +1,5 @@
 package com.example.sbmsystems;
 
-
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -51,29 +50,30 @@ public class NavigationActivity extends Activity implements
 	private CharSequence mTitle;
 	public SyncSensors mSyncSensors;
 	static public Boolean notification;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_navigation);
-		
+
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-				(DrawerLayout) findViewById(R.id.drawer_layout));	
+				(DrawerLayout) findViewById(R.id.drawer_layout));
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
-		if(requestCode == 3 && resultCode ==  RESULT_OK){
-		 notification = data.getBooleanExtra("notify", true);
+
+		if (requestCode == 3 && resultCode == RESULT_OK) {
+			notification = data.getBooleanExtra("notify", true);
 		}
 	}
+
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
@@ -82,7 +82,8 @@ public class NavigationActivity extends Activity implements
 			fragmentManager
 					.beginTransaction()
 					.replace(R.id.container,
-							PlaceholderFragment.newInstance(position + 1)).commit();
+							PlaceholderFragment.newInstance(position + 1))
+					.commit();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,11 +93,11 @@ public class NavigationActivity extends Activity implements
 		}
 	}
 
-	
-	public void setAlerts(){
+	public void setAlerts() {
 		notification = true;
+		doAsynchronousTask.noti = true;
 	}
-	
+
 	public void onSectionAttached(int number) {
 		switch (number) {
 		case 1:
@@ -145,9 +146,9 @@ public class NavigationActivity extends Activity implements
 	 */
 	public static class PlaceholderFragment extends Fragment {
 		public static Socket mySocket;
-		public static GettingSensorThread mGettingSensorThread;
-		public SensorsThreads mSensorThreads;
-		public doAsynchronousTask dt;
+		public GettingSensorThread mGettingSensorThread;
+		public static doAsynchronousTask dt;
+		public Timer timer;
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
@@ -156,10 +157,12 @@ public class NavigationActivity extends Activity implements
 
 		/**
 		 * Returns a new instance of this fragment for the given section number.
-		 * @throws IOException 
-		 * @throws UnknownHostException 
+		 * 
+		 * @throws IOException
+		 * @throws UnknownHostException
 		 */
-		public static PlaceholderFragment newInstance(int sectionNumber) throws UnknownHostException, IOException {
+		public static PlaceholderFragment newInstance(int sectionNumber)
+				throws UnknownHostException, IOException {
 			PlaceholderFragment fragment = new PlaceholderFragment();
 			Bundle args = new Bundle();
 			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -168,8 +171,7 @@ public class NavigationActivity extends Activity implements
 		}
 
 		public PlaceholderFragment() throws UnknownHostException, IOException {
-		
-			
+
 		}
 
 		@Override
@@ -190,18 +192,18 @@ public class NavigationActivity extends Activity implements
 		@Override
 		public void onStart() {
 			super.onStart();
-//			mSensorThreads = new SensorsThreads(mGettingSensorThread, this, notification);
-//			mSensorThreads.execute();	
-			Timer timer = new Timer();
-			final Handler c = new Handler();
+			try {
+				timer = new Timer();
+				dt = new doAsynchronousTask();
+				dt.mgGetting = mGettingSensorThread;
+				dt.mPlaceholder = this;
+				dt.noti = notification;
+				dt.h = new Handler();
+				dt.setTimerTask();
+				timer.schedule(dt.t, 0, 15000);
+			} catch (NullPointerException n) {
 
-			dt = new doAsynchronousTask();
-			dt.mgGetting = mGettingSensorThread;
-			dt.mPlaceholder = this;
-			dt.noti = notification;
-			dt.h = new Handler();
-			dt.setTimerTask();
-			timer.schedule(dt.t, 0, 5000);		    					
+			}
 		}
 	}
 }

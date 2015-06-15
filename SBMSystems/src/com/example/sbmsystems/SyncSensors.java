@@ -23,7 +23,8 @@ public class SyncSensors extends AsyncTask<Void, Void, Void> {
 	Intent intent;
 	static int counter;
 	static Boolean notification;
-
+	static Boolean existance;
+	
 	SyncSensors(PlaceholderFragment f, String t, String g, Boolean n) {
 		activity = f;
 		tempData = t;
@@ -34,7 +35,7 @@ public class SyncSensors extends AsyncTask<Void, Void, Void> {
 		t3 = (TextView) activity.getActivity().findViewById(R.id.textView3);
 		t4 = (TextView) activity.getActivity().findViewById(R.id.textView4);
 		t5 = (TextView) activity.getActivity().findViewById(R.id.textView5);
-		t6 = (TextView) activity.getActivity().findViewById(R.id.textView6);
+		t6 = (TextView) activity.getActivity().findViewById(R.id.textView6);		
 	}
 
 	@Override
@@ -55,11 +56,17 @@ public class SyncSensors extends AsyncTask<Void, Void, Void> {
 			return null;
 		
 		try {
-			if ((Integer.parseInt(tempData) > 60)
-					&& (notification == null || notification == true )) {			
+			if 
+//			((existance == null || existance == false) &&
+					((Integer.parseInt(tempData) > 60)
+					&& (notification == null || notification == true )) 
+					
+			{			
 				intent = new Intent(activity.getActivity(),
-						AlertDialogWarning.class);
+						AlertDialogWarning.class);				
 				activity.getActivity().startActivityForResult(intent, 3);
+				SyncSensors.existance = false;
+				
 			}
 		} catch (NullPointerException n) {
 			Log.w("myApp", "nullptr");

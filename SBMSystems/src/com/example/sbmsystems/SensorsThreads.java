@@ -17,8 +17,8 @@ import android.view.MenuItem;
 public class SensorsThreads extends AsyncTask<Void, Void, String> {
 
 	public GettingSensorThread mThread;
-	static PlaceholderFragment activity;
-	public Boolean notification;
+	public static PlaceholderFragment activity;
+	public static Boolean notification;
 	SensorsThreads(GettingSensorThread t, PlaceholderFragment p, Boolean b){
 		mThread = t;		
 		activity = p;

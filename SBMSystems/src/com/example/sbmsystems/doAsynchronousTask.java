@@ -12,21 +12,23 @@ public class doAsynchronousTask {
 
 	public GettingSensorThread mgGetting;
 	public static PlaceholderFragment mPlaceholder;
-	public Boolean noti;
+	public static Boolean noti;
 	public TimerTask t;
 	public Handler h;
+	public static SensorsThreads mSensorsThreads;
 	public void setTimerTask(){
-		t = new TimerTask() {
-			
+		
+		t = new TimerTask() {			
 			@Override
 			public void run() {
 				h.post(new Runnable() {
 					public void run() {
 						try {
-							SensorsThreads mSensorThreads = new SensorsThreads(
+							
+							mSensorsThreads = new SensorsThreads(
 									mgGetting, mPlaceholder,
 									noti);
-							mSensorThreads.execute();
+							mSensorsThreads.execute();
 							
 						} catch (Exception e) {
 
@@ -40,35 +42,6 @@ public class doAsynchronousTask {
 	public doAsynchronousTask() {
 		// TODO Auto-generated constructor stub
 	}
-	
-//	doAsynchronousTask(GettingSensorThread g, PlaceholderFragment p,
-//			boolean x, final Handler h) {
-//		Log.w("lol", "kurwa");
-//		mgGettingSensorThread = g;
-//		mPlaceholderFragment = p;
-//		notification = x;
-//		t = new TimerTask() {
-//			
-//			@Override
-//			public void run() {
-////				h.post(new Runnable() {
-////					public void run() {
-////						try {
-////							SensorsThreads mSensorThreads = new SensorsThreads(
-////									mgGettingSensorThread, mPlaceholderFragment,
-////									notification);
-////							mSensorThreads.execute();
-////
-////						} catch (Exception e) {
-////
-////						}
-////					}
-////				});
-//			}
-//		};
-		
-//	}
-	
 	
 }
 	
